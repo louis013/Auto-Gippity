@@ -9,6 +9,6 @@ pub struct Message {
 #[derive(Debug, Serialize, Clone)]
 pub struct ChatCompletion {
     pub model: String,
-    pub messages: Vec<Mesage>,
+    pub messages: Vec<Message>,
     pub temperature: f32
 }
