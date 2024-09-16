@@ -1,6 +1,7 @@
 use crate::apis::call_request::call_gpt;
 use crate::models::general::llm::Message;
 use crate::helpers::command_line::PrintCommand;
+use reqwest::Client;
 use serde::de::DeserializeOwned;
 
 // Extend ai function to encourage specific output
@@ -57,6 +58,12 @@ pub async fn ai_task_request_decoded<T: DeserializeOwned>(
     let decoded_response: T = serde_json::from_str(llm_response.as_str())
         .expect("Failed to decode ai response from serde_json");
     return decoded_response;
+}
+
+// Check whether request url is valid
+pub async fn check_status_code(client: &Client, url: &str) -> Result<u16, reqwest::Error> {
+    let response: reqwest::Response = client.get(url).send().await?;
+    Ok(response.status().as_u16())
 }
 
 #[cfg(test)]
