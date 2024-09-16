@@ -1,4 +1,4 @@
-use crate::models::general::llm::{ Message, ChatCompletion };
+use crate::models::general::llm::{ Message, ChatCompletion, APIResponse };
 use dotenv::dotenv;
 use reqwest::{header::InvalidHeaderValue, Client};
 use std::env;
@@ -41,7 +41,7 @@ pub async fn call_gpt(messages: Vec<Message>) -> Result<String, Box<dyn std::err
 
     // Create chat completion
     let chat_completion: ChatCompletion = ChatCompletion {
-        model: "gpt-4".to_string(),
+        model: "gpt-4o-mini".to_string(),
         messages,
         temperature: 0.1
     };
@@ -56,8 +56,19 @@ pub async fn call_gpt(messages: Vec<Message>) -> Result<String, Box<dyn std::err
 
     // dbg!(res_raw.text().await.unwrap());
 
-    // Placeholder
-    Ok("some_string".to_string())
+    // Get API response
+    let res: APIResponse = client
+        .post(url)
+        .json(&chat_completion)
+        .send()
+        .await
+        .map_err(|e| -> Box<dyn std::error::Error + Send> { Box::new(e) })?
+        .json()
+        .await
+        .map_err(|e| -> Box<dyn std::error::Error + Send> { Box::new(e) })?;
+
+    // Send response
+    Ok(res.choices[0].message.content.clone())
 }
 
 #[cfg(test)]
@@ -73,6 +84,16 @@ mod tests {
 
         let messages: Vec<Message> = vec![message];
 
-        call_gpt(messages).await;
+        let res: Result<String, Box<dyn std::error::Error + Send>> = call_gpt(messages).await;
+
+        match res {
+            Ok(res_str) => {
+                dbg!(res_str);
+                assert!(true);
+            },
+            Err(_) => {
+                assert!(false);
+            }
+        }
     }
 }
