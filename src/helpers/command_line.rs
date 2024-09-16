@@ -5,6 +5,37 @@ use crossterm::{
     ExecutableCommand,
 };
 
+#[derive(PartialEq, Debug)]
+pub enum PrintCommand {
+    AiCall,
+    UnitTest,
+    Issue
+}
+
+impl PrintCommand {
+    pub fn print_agent_messgae(&self, agent_pos: &str, agent_statement: &str) {
+        let mut stdout: std::io::Stdout = stdout();
+
+        // Decide on the print color
+        let statement_color: Color = match self {
+            Self::AiCall => Color::Cyan,
+            Self::UnitTest => Color::Magenta,
+            Self::Issue => Color::Red
+        };
+
+        // Print agent statement
+        stdout.execute(SetForegroundColor(Color::Green)).unwrap();
+        print!("Agent: {}: ", agent_pos);
+
+        // Make selected color
+        stdout.execute(SetForegroundColor(statement_color)).unwrap();
+        println!("{}", agent_statement);
+
+        // Reset color
+        stdout.execute(ResetColor).unwrap();
+    }
+}
+
 // Get user request
 pub fn get_user_response(question: &str) -> String {
     let mut stdout: std::io::Stdout = stdout();
@@ -25,4 +56,15 @@ pub fn get_user_response(question: &str) -> String {
 
     // Trim whitespace and return
     return user_response.trim().to_string();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn tests_prints_agent_color() {
+        PrintCommand::UnitTest
+            .print_agent_messgae("Managaing Agent", "Testing testing, processing something");
+    }
 }
