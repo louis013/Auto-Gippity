@@ -5,13 +5,13 @@ use reqwest::Client;
 use serde::de::DeserializeOwned;
 use std::fs;
 
-const CODE_TEMPLATE_PATH: &str = "C:/Users/JASPER/Desktop/Acads/Udemy/rust-web-server-template/src/code_template.rs";
+const CODE_TEMPLATE_PATH: &str = "/home/friend/Desktop/Work/rust-web-server-template/src/code_template.rs";
 
-pub const WEB_SERVER_PROJECT_PATH: &str = "C:/Users/JASPER/Desktop/Acads/Udemy/rust_web_template/";
+pub const WEB_SERVER_PROJECT_PATH: &str = "/home/friend/Desktop/Work/rust-web-server-template/rust_web_template/";
 
-pub const EXEC_MAIN_PATH: &str = "C:/Users/JASPER/Desktop/Acads/Udemy/rust-web-server-template/src/main.rs";
+pub const EXEC_MAIN_PATH: &str = "/home/friend/Desktop/Work/rust-web-server-template/src/main.rs";
 
-const API_SCHEMA_PATH: &str = "C:/Users/JASPER/Desktop/Acads/Udemy/auto_gippity/schemas/api_schema.json";
+const API_SCHEMA_PATH: &str = "/home/friend/Desktop/Work/Auto-Gippity/schemas/api_schema.json";
 
 // Extend ai function to encourage specific output
 pub fn extend_ai_function(ai_func: fn(&str) -> &'static str, func_input: &str) -> Message {
