@@ -175,6 +175,6 @@ mod tests {
         assert!(factsheet.project_scope != None);
         assert!(factsheet.external_urls.is_some());
 
-        dbg!(agent);
+        dbg!(factsheet);
     }
 }
