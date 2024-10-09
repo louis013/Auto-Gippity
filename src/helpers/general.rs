@@ -7,7 +7,7 @@ use std::fs;
 
 const CODE_TEMPLATE_PATH: &str = "/home/friend/Desktop/Work/rust-web-server-template/src/code_template.rs";
 
-pub const WEB_SERVER_PROJECT_PATH: &str = "/home/friend/Desktop/Work/rust-web-server-template/rust_web_template/";
+pub const WEB_SERVER_PROJECT_PATH: &str = "/home/friend/Desktop/Work/rust-web-server-template/";
 
 pub const EXEC_MAIN_PATH: &str = "/home/friend/Desktop/Work/rust-web-server-template/src/main.rs";
 
