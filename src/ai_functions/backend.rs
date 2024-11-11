@@ -9,7 +9,7 @@ pub fn print_backend_webserver_code(_project_description_and_template: &str) {
     /// IMPORTANT: The following libraries are already installed
     ///   reqwest, serde, serde_json, tokio, actix-web, async-trait, actix_cors
     /// No other external libraries should be used. Write functions that fit with the description from the PROJECT_DESCRIPTION
-    /// OUTPUT: Print ONLY the code, nothing else. This function ONLY prints code.
+    /// OUTPUT: Print ONLY the code, nothing else. This function ONLY prints code. Do not include backticks and comments or explanation
     println!(OUTPUT)
 }
 
@@ -29,7 +29,7 @@ pub fn print_improved_webserver_code(_project_description_and_template: &str) {
 pub fn print_fixed_code(_broken_code_with_bugs: &str) {
     /// INPUT: Takes in Rust BROKEN_CODE and the ERROR_BUGS found
     /// FUNCTION: Removes bugs from code
-    /// IMPORTANT: Only prints out the new and improved code. No commentary or anything else
+    /// IMPORTANT: Only prints out the new and improved code. No commentary or anything else and do not include backticks and comments or explanation
     println!(OUTPUT)
 }
 
